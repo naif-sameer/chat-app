@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Naif chat App</title>
+  </head>
+  <body>
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1>Naif chat 😎</h1>
+        <a id="leave-btn" class="btn">Leave Room</a>
+      </header>
+
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3>
+            Group:
+            <span class="room-name" id="room-name"></span>
+          </h3>
+
+          <h3>Users</h3>
+
+          <ul id="users"></ul>
+        </div>
+        <div class="chat-messages"></div>
+      </main>
+
+      <div class="chat-form-container">
+        <form id="chat-form" class="chat-form">
+          <input
+            id="msg"
+            type="text"
+            placeholder="Enter Message"
+            required
+            autocomplete="off"
+          />
+
+          <button class="btn">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/chat.js"></script>
+  </body>
+</html>

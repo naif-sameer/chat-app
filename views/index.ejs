@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Naif chat App</title>
+  </head>
+  <body>
+    <div class="join-container">
+      <header class="join-header">
+        <h1>Naif chat 😎</h1>
+      </header>
+
+      <main class="join-main">
+        <form action="/chat">
+          <div class="form-control">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="rounded"
+              placeholder="username..."
+              required
+            />
+          </div>
+
+          <% if (rooms && rooms.length > 0) { %>
+
+          <div class="form-control">
+            <label for="room">Room</label>
+            <select name="room" id="room" class="rounded">
+              <option selected disabled>Available Groups</option>
+              <!-- loop -->
+              <% rooms.forEach(room => { %>
+              <option value="<%= room %>"><%= room %></option>
+
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="or-label">
+            <span class="label">or</span>
+          </div>
+          <% } %>
+
+          <div class="form-control">
+            <label for="room-name">New Room (option)</label>
+            <input
+              type="text"
+              name="room"
+              id="room-name"
+              class="rounded"
+              placeholder="room-name..."
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-join rounded">Join Chat</button>
+        </form>
+      </main>
+    </div>
+
+    <!-- this script only work if there is room -->
+    <% if (rooms && rooms.length > 0) { %>
+    <script>
+      const el = ($el) => document.querySelector($el);
+      const roomSelect = el('#room');
+      const optionRoomInput = el('#room-name');
+
+      optionRoomInput.addEventListener('input', (e) => {
+        console.log(e.target.value);
+        if (e.target.value !== '') {
+          roomSelect.setAttribute('disabled', 'true');
+        } else {
+          roomSelect.removeAttribute('disabled');
+          console.log(e.target.value);
+        }
+      });
+
+      roomSelect.addEventListener('change', (e) => {
+        if (e.target.value !== '') {
+          optionRoomInput.setAttribute('disabled', 'true');
+        } else {
+          optionRoomInput.removeAttribute('disabled');
+        }
+      });
+    </script>
+    <% } %>
+  </body>
+</html>
